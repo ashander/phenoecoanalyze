@@ -144,13 +144,6 @@ Pgr <- function(t, alpha, B, gammash, delta, rmax, Gaa, Gbb,
 }
 
 #' @export
-Timescale_2 <- function(var_a, sigma_xi, delta, Vb) {
-  eval2 <- var_a * sigma_xi / delta ^ 2 * Phi(var_a, Vb, delta)
-  1 / eval2
-}
-
-
-#' @export
 Nt <- function(t, env, omegaz, rho, alpha, R0=omega_Wmax, N0=Npop0, PPpred=FALSE,
                .var_a=var_a, .Vb=Vb, .Ve=Ve, .tau=tau, .sigma_xi=sigma_xi, LS=FALSE, .B=B)
     log(N0) + Pgr(t, alpha, .B, gammash=1 / (omegaz ^ 2 +  Vz_(.var_a, .Vb, env, .Ve)),
