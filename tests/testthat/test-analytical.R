@@ -31,7 +31,7 @@ param_string <- '{"K0":100000000,
 "exact": false}'
 
 
-test_that("(cross-package) Nt pred approx equal to median Gamma dens", {
+test_that("(cross-package-- depends on < 2.0.0 of noisy.evo.demo!!) Nt pred approx equal to median Gamma dens", {
 try(library(jsonlite, quietly=TRUE, warn.conflicts=FALSE),
       silent = TRUE)
   try(params  <- fromJSON(param_string)) #stream_in needs minified json so use fromJSON
@@ -65,7 +65,12 @@ try(library(jsonlite, quietly=TRUE, warn.conflicts=FALSE),
 
   sigma_xi <- sqrt(sigma_xi2)
   omegaz <- sqrt(omegaz2)
-  t2 <- noisy.evo.demo::Timescale_2(var_a, sigma_xi, delta, Vb)
+
+  Timescale_2 <- function(var_a, sigma_xi, delta, Vb) {
+    eval2 <- var_a * sigma_xi / delta ^ 2 * Phi(var_a, Vb, delta)
+    1 / eval2
+  }
+  t2 <- Timescale_2(var_a, sigma_xi, delta, Vb)
   times <- 1:ceiling(t2)
   pred_median <- sapply(times, function(t) noisy.evo.demo::qNgamma(t, 0.5, rho, tau, omegaz^2, var_a, Vb, delta, Ve, B, alpha,
                                                    interp_alpha = FALSE, exact = FALSE, .R0=R0, .Npop0=Npop0,
