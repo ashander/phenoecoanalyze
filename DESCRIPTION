@@ -1,6 +1,6 @@
 Package: phenoecoanalyze
 Title: What the Package Does (one line, title case)
-Version: 0.0.1.9000
+Version: 0.0.1.9100
 Authors@R: utils::person("Jaime", "Ashander", email = "ashander@stanfordalumni.org", role  = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends:
